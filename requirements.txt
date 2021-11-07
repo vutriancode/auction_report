@@ -1,0 +1,6 @@
+docxtpl
+fastapi
+uvicorn
+typing
+pydantic
+aiofiles
