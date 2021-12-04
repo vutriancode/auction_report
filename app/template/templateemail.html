@@ -1,49 +1,3 @@
-HOST  = "smtp.gmail.com"
-USERNAME = "vutrian172933@gmail.com"
-PASSWORD = "an.vt172933"
-SUBJECT = " Thông báo diễn biến đấu giá trực tuyến"
-JSON_TEST ={
-    "Template": "LSTragia.docx",
-    "ListData": {
-        "nowday":15,
-        "nowmonth":11,
-        "nowyear":2021,
-        "trung": True,
-        "ReceiverCode":"KH0001",
-        "RecieverName":"Công ty cổ phần Trường Sinh",
-        "AssetOwner":"Công ty cổ phần Vũ Trí An",
-        "Auctioneer":"Vũ Trí An",
-        "DVDGTS":"Công ty đấu giá hợp danh Vũ Trí An",
-        "history":[
-            {
-                "stt":1,
-                "time":"2021-12-01T00:00:00.000",
-                "assetcode":"TS0001",
-                "customercode":"KH0001",
-                "price":1000000,
-                "note":""
-            },
-            {
-                "stt":2,
-                "time":"2021-12-01T00:00:00.000",
-                "assetcode":"TS0001",
-                "customercode":"KH0001",
-                "price":2000000,
-                "note":"Gía cao nhất"
-            },
-            {
-                "stt":3,
-                "time":"2021-12-01T00:00:00.000",
-                "assetcode":"TS0002",
-                "customercode":"KH0001",
-                "price": 1000000,
-                "note":"Gía cao nhất"
-                }
-            ]
-        }
-    }
-
-HTML= '''\
 <!doctype html>
 <html>
   <head>
@@ -379,7 +333,7 @@ HTML= '''\
     </style>
   </head>
   <body class="">
-    <span class="preheader">Quý khách vừa tham gia phiên đấu giá trực tuyến do Đơn vị đấu giá - <strong>DVDGTS</strong> tổ chức </span>
+    <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
         <td>&nbsp;</td>
@@ -389,7 +343,7 @@ HTML= '''\
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                   <tr>
                     <td class="content-block">
-                        <img src="https://i.ibb.co/Qm8XQC7/logo.jpg" width="100" height="100">
+                        <img src="logo.jpg" width="100" height="100">
                     </td>
                   </tr>
                 </table>
@@ -404,10 +358,11 @@ HTML= '''\
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p><strong>Kính gửi:  Khách hàng ReceiverCode</strong></p>
-                        <p>Quý khách vừa tham gia phiên đấu giá trực tuyến do Đơn vị đấu giá - <strong>DVDGTS</strong> tổ chức <i>ngày nowday tháng nowmonth năm nowyear</i> bằng nền tảng kỹ thuật <strong>Đấu giá trực tuyến và trả giá điện tử theo thời gian thực</strong> được cung cấp bởi Công ty Cổ phần AutoDoc. Mọi diễn biến trả giá của Quý khách đã được lưu trữ, thống kê bằng thời gian thực. Quý khách vui lòng xem chi tiết tại file <strong>DIỄN BIẾN TRẢ GIÁ </strong>đính kèm.</p>
-                        <p>Quý khách ĐĂNG KÝ tham gia khách hàng thường xuyên của  Sandaugia.net để nhận thêm nhiều thông tin đấu giá trên cả nước và nhiều ưu đãi khác tại từng thời điểm vui lòng xác thực tài khoản <a href="https://www.sandaugia.net/ReceiverCode}">tại đây</a></p>
-                        <p>Quý khách là các tổ chức đấu giá chuyên nghiệp ĐĂNG KÝ tham gia mạng lưới đấu giá trực tuyến của <a href="https://www.sandaugia.net/DVDGTS">Sandaugia.net</a> để nhận nhiều tiện ích bổ trợ nghiệp vụ đấu giá tự động; hướng dẫn setup, chuyển giao công nghệ trang thiết bị phòng đấu giá trực tuyến tiêu chuẩn và nhiều ưu đãi khác tại từng thời điểm vui lòng xác thực tài khoản <a href="https://www.sandaugia.net/DVDGTS">tại đây</a></p>
+                        <p><strong>Kính gửi:  Khách hàng {{ReceiverCode}}</strong></p>
+                        <p>Quý khách vừa tham gia phiên đấu giá trực tuyến do Đơn vị đấu giá - <strong>{{DVDGTS}}</strong> tổ chức <i>ngày {{nowday}} tháng {{nowmonth}} năm {{nowyear}}</i> bằng nền tảng kỹ thuật <strong>Đấu giá trực tuyến và trả giá điện tử theo thời gian thực</strong> được cung cấp bởi Công ty Cổ phần AutoDoc và DDA. Mọi diễn biến trả giá của Quý khách đã được lưu trữ, thống kê bằng thời gian thực. Quý khách vui lòng xem chi tiết tại file <strong>DIỄN BIẾN TRẢ GIÁ </strong>đính kèm.</p>
+                        <hr>
+                        <p>Quý khách ĐĂNG KÝ tham gia khách hàng thường xuyên của  Sandaugia.net để nhận thêm nhiều thông tin đấu giá trên cả nước và nhiều ưu đãi khác tại từng thời điểm vui lòng xác thực tài khoản <a href="https://www.sandaugia.net/{{ReceiverCode}">tại đây</a></p>
+                        <p>Quý khách là các tổ chức đấu giá chuyên nghiệp ĐĂNG KÝ tham gia mạng lưới đấu giá trực tuyến của <a href="https://www.sandaugia.net/{{DVDGTS}}">Sandaugia.net</a> để nhận nhiều tiện ích bổ trợ nghiệp vụ đấu giá tự động; hướng dẫn setup, chuyển giao công nghệ trang thiết bị phòng đấu giá trực tuyến tiêu chuẩn và nhiều ưu đãi khác tại từng thời điểm vui lòng xác thực tài khoản <a href="https://www.sandaugia.net/{{DVDGTS}}">tại đây</a></p>
                       </td>
                     </tr>
                   </table>
@@ -438,4 +393,3 @@ HTML= '''\
     </table>
   </body>
 </html>
-'''
